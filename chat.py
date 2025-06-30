@@ -88,3 +88,4 @@ while True:
 
         # modeltts(final_response)
     short_term_memory.add_message("assistant", assistant_reply)
+
