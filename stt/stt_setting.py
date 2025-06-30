@@ -52,14 +52,14 @@
 
 
 
-from openai import api_key
+# from openai import api_key
 
-client = api_key("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")
-audio_file = open("/path/to/file/german.mp3", "rb")
+# client = api_key("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")
+# audio_file = open("/path/to/file/german.mp3", "rb")
 
-translation = client.audio.translations.create(
-    model="whisper-1", 
-    file=audio_file,
-)
+# translation = client.audio.translations.create(
+#     model="whisper-1", 
+#     file=audio_file,
+# )
 
-print(translation.text)
+# print(translation.text)

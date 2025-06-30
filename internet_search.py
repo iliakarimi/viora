@@ -5,6 +5,8 @@ import json
 from dotenv import load_dotenv
 from memory_setting.short_term_memory.short_term_memory import ShortTermMemory
 
+client = openai.OpenAI()
+
 with open('memory/fixed_memory.json', 'r') as file:
     assistant_data = json.load(file)
 
@@ -81,7 +83,7 @@ def search_online(search_term):
     )
 
     short_term_memory.add_message("user", prompt_text)
-    response = openai.ChatCompletion.create(
+    response = client.responses.create(
         model="gpt-4.1-mini",
         messages=short_term_memory.get_messages()
     )
@@ -93,8 +95,8 @@ def search_online(search_term):
 
 
 def needs_internet_check(user_input):
-    response = openai.ChatCompletion.create(
-        model="gpt-4.1-nano",
+    response = client.responses.create(
+        model="gpt-4.1",
         messages=[
             {
                 "role": "system",
