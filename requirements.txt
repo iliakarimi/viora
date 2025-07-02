@@ -1,4 +1,3 @@
-openai
-dotenv
-pygame
-deepgram
+openai==1.93.0
+pygame==2.6.1
+deepgram-sdk==4.5.0

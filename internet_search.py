@@ -15,20 +15,24 @@ short_term_memory = ShortTermMemory()
 assistant_name = assistant_data["name"]
 user_name = assistant_data["user_name"]
 about_user = assistant_data["about_user"]
-assistant_gender = assistant_data["gender"]
-assistant_goal = assistant_data["personality"] + " " + assistant_data["constant_presence"] + " " + assistant_data["relationship_dynamic"]
+assistant_goal = assistant_data["personality"]
 
 short_term_memory.add_message(
     "system",
     f"You are {assistant_name}, a helpful assistant for {user_name}."
-    f"Your personality: {assistant_goal}. Your gender is{assistant_gender}."
     f"If you wanted to use the word 'there' to call the user, use {user_name}."
     f"If you want to know about Ilia, use {about_user}."
     f"You have short-term memory. You can remember details during this session (short-term memory){short_term_memory}."
     "You only communicate with Ilia."
     "Ilia is your developer."
-    "When i talk to you with persian language, you talk and type for me with 'finglish typing' for example(for'سلام' type 'salam')."
     "You can search on the Internet."
+    f"Respond **only** with a single JSON object, valid according to RFC 8259. "
+    f"Use **only** double quotes for all keys and string values. "
+    f"Do **not** include any single quotes or text outside the JSON. "
+    f"Follow this exact schema:\n"
+    f"{{\n"
+    f'  "response": "<string>",\n'
+    f"}}"
 )
 
 load_dotenv()
@@ -83,21 +87,26 @@ def search_online(search_term):
     )
 
     short_term_memory.add_message("user", prompt_text)
-    response = client.responses.create(
+    internet_response = client.responses.create(
         model="gpt-4.1-mini",
-        messages=short_term_memory.get_messages()
+        input=short_term_memory.get_messages()
     )
-    online_assistant_reply = response['choices'][0]['message']['content']
-    
+    online_assistant_reply = internet_response.output_text
+    with open("online_response.json", "w") as wr:
+        wr.write(online_assistant_reply)
+    with open("online_response.json", "r") as rr:
+        online_response_data = json.load(rr)
+    online_assistant_reply = {"text": f"{online_response_data["response"]}"}
+
     short_term_memory.add_message("assistant", online_assistant_reply)
     return online_assistant_reply
 
 
 
 def needs_internet_check(user_input):
-    response = client.responses.create(
-        model="gpt-4.1",
-        messages=[
+    internet_check_response = client.responses.create(
+        model="gpt-4.1-mini",
+        input=[
             {
                 "role": "system",
                 "content": (
@@ -131,6 +140,6 @@ def needs_internet_check(user_input):
             {"role": "user", "content": user_input}
         ]
     )
-    return response['choices'][0]['message']['content'].strip()
+    return internet_check_response.output_text
 
 

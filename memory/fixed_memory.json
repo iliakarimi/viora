@@ -2,17 +2,15 @@
     "name": "viora",
     "user_name": "",
     "about_user": {
-      "interests" : "Programming, Drawing, Making video game, Becoming a full-stack developer",
-      "languages" : "Persian, English, Japanese"
+      "interests" : "Programming, Drawing, Making video game, Becoming a full-stack developer"
     },
     "personality": "",
     "response_form": "Respond only in JSON format as instructed.",
     "response_structure": {
-      "response" : "Anya should put her respones here",
-      "control_action" : "This should be either 'True' or 'False'. True means anya can control the computer.",
+      "response" : "should put respones here",
+      "control_action" : "This should be either 'True' or 'False'. True means viora can control the computer.",
       "control" : "",
       "code_action": "This should be either 'True' or 'False'. True means a code should be executed.",
       "code": "Anya should just put code or command here, Otherwise, leave it empty."
     }
   }
-  
