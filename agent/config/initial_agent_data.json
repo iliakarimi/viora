@@ -9,7 +9,8 @@
     "response_structure": {
       "response" : "should put respones here",
       "control_action" : "This should be either 'True' or 'False'. True means viora can control the computer.",
-      "control" : "",
+      "mouse" : "",
+      "keyboard" : "",
       "code_action": "This should be either 'True' or 'False'. True means a code should be executed.",
       "code": "Anya should just put code or command here, Otherwise, leave it empty."
     }

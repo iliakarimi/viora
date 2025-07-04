@@ -1,9 +1,9 @@
-import requests
-import openai
 import os
 import json
+import openai
+import requests
 from dotenv import load_dotenv
-from memory_setting.short_term_memory.short_term_memory import ShortTermMemory
+from memory.short_term_memory import ShortTermMemory
 
 client = openai.OpenAI()
 
