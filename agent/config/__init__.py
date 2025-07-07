@@ -1,1 +1,0 @@
-from setting import get_api_key

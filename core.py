@@ -1,18 +1,19 @@
 import os
 import json
 import openai
-from config import get_api_key
-# import pyautogui
-from speech import modeltts
+from dotenv import load_dotenv
+from speech.tts import modeltts
+from configs.settings import get_api_key
+from memory.short_term_memory import ShortTermMemory
 from internet_search import  needs_internet_check, search_online
-# from stt.stt_setting import record_until_silence, transcribe_audio
-from memory import ShortTermMemory
 
 client = openai.OpenAI()
 
-get_api_key()
+load_dotenv()
 
-with open('config/initial_agent_data.json', 'r') as file:
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
 
 short_term_memory = ShortTermMemory()
@@ -85,5 +86,4 @@ while True:
         else:
             continue
 
-
-        short_term_memory.add_message("assistant", assistant_reply)
+        short_term_memory.add_message("assistant", json.dumps(assistant_reply))

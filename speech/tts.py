@@ -33,7 +33,7 @@ tts_player = TTSPlayer()
 def modeltts(respond):
     
     SPEAK_TEXT = respond
-    filename = "tts/response.wav"
+    filename = "logs/response.wav"
 
     try:
         # STEP 1 Create a Deepgram client using the API key from environment variables

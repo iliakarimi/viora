@@ -1,0 +1,27 @@
+As of July 7, 2025, several significant developments have unfolded concerning Iran:
+
+**Iran's Response to U.S. Military Strikes**
+
+Iran's Foreign Minister, Abbas Araghchi, condemned recent U.S. military strikes targeting three key Iranian nuclear sites, labeling them an "egregious act of aggression." He warned of "dangerous" and "far-reaching" consequences and called for an emergency U.N. Security Council meeting, citing a violation of Resolution 2231. Araghchi emphasized Iran's right to self-defense and criticized the U.S. administration and Israel as enemies of peace. ([dev.time.com](https://dev.time.com/7282768/iran-delivers-furious-warning-speaks-of-unprecedented-level-of-danger-and-chaos-after-heinous-u-s-strikes/?utm_source=openai))
+
+**Russia's Diplomatic Engagement**
+
+At the BRICS summit in Rio de Janeiro, Russian Foreign Minister Sergei Lavrov met with Iranian representative Abbas Araqchi to discuss Iran's nuclear program. Lavrov reiterated Russia’s offer to mediate and support diplomatic solutions to the ongoing tensions surrounding Iran’s nuclear activities. The Russian Foreign Ministry condemned recent Israeli and U.S. strikes on Iran, particularly attacks on nuclear infrastructure under International Atomic Energy Agency safeguards. Russia reaffirmed its position that Iran has the right to pursue a peaceful nuclear energy program and emphasized that all disputes must be resolved diplomatically. ([reuters.com](https://www.reuters.com/world/americas/russias-lavrov-meets-irans-araqchi-renews-offer-help-solve-conflict-2025-07-06/?utm_source=openai))
+
+**U.S.-Israel Relations Amid Regional Tensions**
+
+U.S. President Donald Trump and Israeli Prime Minister Benjamin Netanyahu met for the third time this year amidst a backdrop of recent joint airstrikes on Iranian nuclear facilities, which they both tout as a major success. However, their triumphal rhetoric is dampened by Israel’s ongoing 21-month war with Hamas in Gaza. Trump, who emphasizes his desire to be seen as a global peacemaker, is pushing hard for a ceasefire, proposing a 60-day pause, humanitarian aid, and hostage releases. Yet, major sticking points remain, particularly over whether the ceasefire would signify the end of the war. Netanyahu demands Hamas disarm and go into exile, while Hamas calls for a full Israeli withdrawal from Gaza. Their meeting could determine the future of both conflicts and potentially catalyze broader Middle East peace initiatives, including expanding the Abraham Accords and integrating nations like Syria and Saudi Arabia. ([apnews.com](https://apnews.com/article/30dba4ae46fbec44dbe977a547e612f4?utm_source=openai))
+
+**Iran's Supreme Leader's Public Appearance**
+
+Iran's Supreme Leader Ayatollah Ali Khamenei made his first public appearance since Israel's attacks on Iran last month, which led to nearly two weeks of war and the deaths of numerous Iranian military leaders. The 86-year-old attended a religious ceremony in Tehran, ending speculation about his whereabouts and safety during the conflict. His appearance is seen as a sign of stability for Iranians coping with post-ceasefire uncertainty. ([ft.com](https://www.ft.com/content/8e4f08c8-5da2-4d21-904f-f9e0dc4d259e?utm_source=openai))
+
+**UN Inspectors Withdraw from Iran**
+
+Following a recent 12-day war between Israel and Iran, Israel aims to maintain "aerial superiority" over the Islamic republic to safeguard against future threats, according to Defense Minister Israel Katz. This assertion comes as the UN's International Atomic Energy Agency (IAEA) confirmed the withdrawal of their inspectors from Iran after Tehran passed a law suspending cooperation. These inspectors had been a crucial source of independent information on Iran’s nuclear program for over two decades. The conflict and subsequent lack of transparency have left uncertainty about Iran’s nuclear capabilities, including the whereabouts of 400 kg of near weapons-grade enriched uranium. ([ft.com](https://www.ft.com/content/26b3527d-4b5b-4f60-804b-051b53ec443b?utm_source=openai))
+
+
+## Key Developments in Iran's Nuclear Program and Regional Relations:
+- [Iran Delivers Furious Warning, Speaks of 'Unprecedented Level of Danger and Chaos' After 'Heinous' U.S. Strikes](https://dev.time.com/7282768/iran-delivers-furious-warning-speaks-of-unprecedented-level-of-danger-and-chaos-after-heinous-u-s-strikes/?utm_source=openai)
+- [Russia's Lavrov meets Iran's Araqchi, renews offer to help solve conflict](https://www.reuters.com/world/americas/russias-lavrov-meets-irans-araqchi-renews-offer-help-solve-conflict-2025-07-06/?utm_source=openai)
+- [Trump and Netanyahu may take a victory lap on Iran, but the Gaza war looms over their meeting](https://apnews.com/article/30dba4ae46fbec44dbe977a547e612f4?utm_source=openai) 

@@ -1,104 +1,67 @@
 import os
 import json
 import openai
-import requests
+from utils import clean_urls
 from dotenv import load_dotenv
 from memory.short_term_memory import ShortTermMemory
 
 client = openai.OpenAI()
 
-with open('memory/fixed_memory.json', 'r') as file:
+with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
 
 short_term_memory = ShortTermMemory()
-
-assistant_name = assistant_data["name"]
-user_name = assistant_data["user_name"]
-about_user = assistant_data["about_user"]
-assistant_goal = assistant_data["personality"]
-
-short_term_memory.add_message(
-    "system",
-    f"You are {assistant_name}, a helpful assistant for {user_name}."
-    f"If you wanted to use the word 'there' to call the user, use {user_name}."
-    f"If you want to know about Ilia, use {about_user}."
-    f"You have short-term memory. You can remember details during this session (short-term memory){short_term_memory}."
-    "You only communicate with Ilia."
-    "Ilia is your developer."
-    "You can search on the Internet."
-    f"Respond **only** with a single JSON object, valid according to RFC 8259. "
-    f"Use **only** double quotes for all keys and string values. "
-    f"Do **not** include any single quotes or text outside the JSON. "
-    f"Follow this exact schema:\n"
-    f"{{\n"
-    f'  "response": "<string>",\n'
-    f"}}"
-)
 
 load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def execute_search_query(search_term):
-
-    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-    SEARCH_ENGINE_ID = os.getenv("SEARCH_ENGINE_ID")
-
-    if not GOOGLE_API_KEY or not SEARCH_ENGINE_ID:
-        return {"error": "Missing API keys. Check your environment variables."}
-
-    url = "https://www.googleapis.com/customsearch/v1"
-    params = {
-        "q": search_term,
-        "key": GOOGLE_API_KEY,
-        "cx": SEARCH_ENGINE_ID,
-        "num": 3
-    }
-
-    try:
-        response = requests.get(url, params=params)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        return {"error": f"Error fetching search results: {e}"}
+response_form = assistant_data["response_form"]
+response_structure = assistant_data["response_structure"]
 
 def search_online(search_term):
-
-    search_data = execute_search_query(search_term)
-    
-    aggregated_details = ""
-    if 'items' in search_data:
-        details_list = []
-        for entry in search_data['items']:
-            title = entry.get('title', 'No Title')
-            snippet = entry.get('snippet', 'No snippet available')
-            link = entry.get('link', 'No link available')
-            details = (
-                f"Title: {title}\n"
-                f"Snippet: {snippet}\n"
-                f"Link: {link}\n"
-            )
-            details_list.append(details)
-        aggregated_details = "\n".join(details_list)
-    
-    prompt_text = (
-        f"User Query: {search_term}\n"
-        f"Search Results:\n{aggregated_details}"
+    raw_internet_response = client.responses.create(
+        model="gpt-4.1-mini",
+        tools=[{
+            "type": "web_search_preview",
+            "search_context_size": "low",
+        }],
+        input=[
+            {"role": "user", "content": search_term}
+        ],
     )
-
-    short_term_memory.add_message("user", prompt_text)
+    raw_online_assistant_reply = raw_internet_response.output_text
+    
+    with open("logs/raw_online_response.txt", "w") as wr:
+        wr.write(raw_online_assistant_reply)
+    with open("logs/raw_online_response.txt", "r") as rr:
+        raw_text = rr.read()
+    raw_online_response_data = clean_urls(raw_text)
     internet_response = client.responses.create(
         model="gpt-4.1-mini",
-        input=short_term_memory.get_messages()
+        input=[
+            {"role": "system", "content": 
+             "summarize the news into a single paragraph under 1800 characters."
+             f"Respond {response_form} as instructed, following the {response_structure} for Respones structure."
+             f"Respond **only** with a single JSON object, valid according to RFC 8259. "
+             f"Use **only** double quotes for all keys and string values. "
+             f"Do **not** include any single quotes or text outside the JSON. "
+             },
+            {"role": "user", "content": raw_online_response_data}
+        ],
     )
-    online_assistant_reply = internet_response.output_text
-    with open("online_response.json", "w") as wr:
-        wr.write(online_assistant_reply)
-    with open("online_response.json", "r") as rr:
-        online_response_data = json.load(rr)
-    online_assistant_reply = {"text": f"{online_response_data["response"]}"}
+    online_assistant_response = internet_response.output_text
+    
+    with open('logs/online_response.json', 'w') as wrfile:
+        wrfile.write(online_assistant_response)
+    with open('logs/online_response.json', 'r') as rrfile:
+        online_response_data = json.load(rrfile)
+    
+    f_online_assistant_response = online_response_data["response"]
+    
+    online_assistant_reply = {"text": f"{f_online_assistant_response}"}
 
-    short_term_memory.add_message("assistant", online_assistant_reply)
+    short_term_memory.add_message("assistant", f_online_assistant_response)
     return online_assistant_reply
 
 
