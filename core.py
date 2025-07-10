@@ -1,10 +1,8 @@
 import os
 import json
 import openai
-from get_api_key import getapikey
-from dotenv import load_dotenv
 from speech.tts import modeltts
-from configs.settings import get_api_key
+from get_api_key import getapikey
 from memory.short_term_memory import ShortTermMemory
 from internet_search import  needs_internet_check, search_online
 
