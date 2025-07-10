@@ -1,19 +1,19 @@
 import os
-from time import sleep
 import pygame
-from deepgram.utils import verboselogs
-from deepgram import DeepgramClient, SpeakOptions
+from time import sleep
 from dotenv import load_dotenv
+from deepgram import SpeakOptions
+from get_api_key import get_deepgram_key
 
 pygame.mixer.init()
 
 class TTSPlayer:
     def __init__(self):
-        self.current_sound = None  # Save the played file
+        self.current_sound = None
 
     def play(self, file_path):
         """ Play Audio file """
-        if self.current_sound:  # If the previous sound has been played, stop.
+        if self.current_sound:
             self.stop()
         
         self.current_sound = pygame.mixer.Sound(file_path)
@@ -36,11 +36,9 @@ def modeltts(respond):
     filename = "logs/response.wav"
 
     try:
-        # STEP 1 Create a Deepgram client using the API key from environment variables
         load_dotenv()
-        deepgram = DeepgramClient(os.getenv("DEEPGRAM_API"))
+        deepgram = get_deepgram_key
 
-        # STEP 2 Call the save method on the speak property
         options = SpeakOptions(
             model="aura-2-andromeda-en",
         )

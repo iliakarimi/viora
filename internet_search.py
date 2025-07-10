@@ -1,6 +1,7 @@
 import os
 import json
 import openai
+from get_api_key import getapikey
 from utils import clean_urls
 from dotenv import load_dotenv
 from memory.short_term_memory import ShortTermMemory
@@ -12,9 +13,7 @@ with open('configs/initial_agent_data.json', 'r') as file:
 
 short_term_memory = ShortTermMemory()
 
-load_dotenv()
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
+getapikey
 
 response_form = assistant_data["response_form"]
 response_structure = assistant_data["response_structure"]

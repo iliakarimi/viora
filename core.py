@@ -1,6 +1,7 @@
 import os
 import json
 import openai
+from get_api_key import getapikey
 from dotenv import load_dotenv
 from speech.tts import modeltts
 from configs.settings import get_api_key
@@ -9,9 +10,7 @@ from internet_search import  needs_internet_check, search_online
 
 client = openai.OpenAI()
 
-load_dotenv()
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
+getapikey
 
 with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
