@@ -9,6 +9,7 @@ https://github.com/autopilot-rs/autopy
 https://github.com/pywinauto/pywinauto
 
 https://pypi.org/project/PyAutoGUI/
+https://pyautogui.readthedocs.io/en/latest/index.html
 
 ----------------------------------------------------
 

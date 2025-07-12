@@ -2,13 +2,14 @@ import os
 import json
 import openai
 from speech.tts import modeltts
-from get_api_key import getapikey
+from get_api_key import get_openai_key
 from memory.short_term_memory import ShortTermMemory
 from internet_search import  needs_internet_check, search_online
+from action import ComputerAnalyze, ComputerAction
 
 client = openai.OpenAI()
 
-getapikey
+get_openai_key()
 
 with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
@@ -31,9 +32,9 @@ short_term_memory.add_message(
     f"You have short-term memory. You can remember details during this session (short-term memory){short_term_memory}."
     "You can search on the Internet."
     f"Respond {response_form} as instructed, following the {response_structure} for Respones structure.You can run Code and Command when 'code_action' == 'True' in Computer. for control the ilia's laptop you can use cmd command."
-    f"Respond **only** with a single JSON object, valid according to RFC 8259. "
-    f"Use **only** double quotes for all keys and string values. "
-    f"Do **not** include any single quotes or text outside the JSON. "
+    "Respond **only** with a single JSON object, valid according to RFC 8259."
+    "Use **only** double quotes for all keys and string values."
+    "Do **not** include any single quotes or text outside the JSON. "
 )
 
 
@@ -51,7 +52,6 @@ while True:
         print(f"{assistant_name}: {online_assistant_reply}")
         modeltts(online_assistant_reply)
         short_term_memory.add_message("assistant", online_assistant_reply)
-        
     elif internet_check == "NO":
         response = client.responses.create(
         model="gpt-4.1-mini",
@@ -68,6 +68,10 @@ while True:
         final_response = {"text": f"{response_data["response"]}"}
         modeltts(final_response)
         print(f"{assistant_name}: {final_response}")
+        if response_data["control_action"] == "True":
+            ComputerAnalyze()
+            ComputerAction(mouse="mouse", keyboard="keyboard")
+
 
         if response_data["code_action"] == "True":
             try:
