@@ -1,6 +1,14 @@
 {
-    "user" : "",
+    "user_name" : "",
+    "about_user": {
+        "interests": [
+        "Programming",
+        "Drawing",
+        "Making video games",
+        "Becoming a full-stack developer"
+        ]
+    },
     "os" : "",
-    "screen_size" : [1920, 1080]
+    "screen_size" : "1920, 1080"
 
 }

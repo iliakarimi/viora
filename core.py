@@ -5,7 +5,7 @@ from speech.tts import modeltts
 from get_api_key import get_openai_key
 from memory.short_term_memory import ShortTermMemory
 from internet_search import  needs_internet_check, search_online
-from action import ComputerAnalyze, ComputerAction
+from action import ComputerAnalyze, keyboard_control
 
 client = openai.OpenAI()
 
@@ -13,15 +13,23 @@ get_openai_key()
 
 with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
+with open('configs/user_setup.json', 'r') as us:
+    user_data = json.load(us)
 
 short_term_memory = ShortTermMemory()
 
 assistant_name = assistant_data["name"]
-user_name = assistant_data["user_name"]
-about_user = assistant_data["about_user"]
+user_name = user_data["user_name"]
+about_user = user_data["about_user"]
 assistant_goal = assistant_data["personality"]
 response_form = assistant_data["response_form"]
 response_structure = assistant_data["response_structure"]
+keyboard_key = assistant_data["key"]
+keyboard_times = assistant_data["times"]
+keyboard_write = assistant_data["write"]
+keyboard_firsthkey = assistant_data["firsthkey"]
+keyboard_sechkey = assistant_data["sechkey"]
+keyboard_hotkey = assistant_data["hotkey"]
 
 short_term_memory.add_message(
     "system",
@@ -70,7 +78,14 @@ while True:
         print(f"{assistant_name}: {final_response}")
         if response_data["control_action"] == "True":
             ComputerAnalyze()
-            ComputerAction(mouse="mouse", keyboard="keyboard")
+            keyboard_control(
+                key= keyboard_key,
+                times= keyboard_times,
+                write= keyboard_write,
+                firsthkey= keyboard_firsthkey,
+                sechkey= keyboard_sechkey,
+                hotkey= keyboard_hotkey
+                )
 
 
         if response_data["code_action"] == "True":
