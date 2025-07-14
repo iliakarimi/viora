@@ -25,6 +25,7 @@ response_form = assistant_data["response_form"]
 response_structure = assistant_data["response_structure"]
 screen_vision = assistant_data["screen_vision"]
 
+
 short_term_memory.add_message(
     "system",
     f"You are {assistant_name}, a helpful assistant for {user_name}.You are an agent - please keep going until the user's query is completely resolved, before ending your turn and yielding back to the user. Only terminate your turn when you are sure that the problem is solved."
