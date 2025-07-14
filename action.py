@@ -13,9 +13,9 @@ def encode_image(image_path):
 
 class ComputerAnalyze():
     def screen_picture():
-        pyautogui.screenshot('logs/screenshot.png')
+        pyautogui.screenshot('logs/snapshot.png')
     def screen_analyze():
-        image_f = "logs/screenshot.png"
+        image_f = "logs/snapshot.png"
         base64_image = encode_image(image_f)
 
         analyze_response = client.responses.create(
@@ -45,4 +45,3 @@ def keyboard_control(key= '', times=1, write= '', firsthkey= '', sechkey= '', ho
     pyautogui.hotkey(hotkey)
     with pyautogui.hold(firsthkey):
         pyautogui.press(sechkey)
-
