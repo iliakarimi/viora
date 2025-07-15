@@ -85,16 +85,20 @@ while True:
 
             ComputerAnalyze.screen_picture()
             ComputerAnalyze.screen_analyze()
-            with open('logs/analyze_screen.json', 'r') as cr:
-                analyze_data = json.load(cr)
-            short_term_memory.add_message("assistant", json.dumps(analyze_data))
+            with open('logs/analyze_screen.txt', 'r') as cr:
+                analyze_data = cr.read()
+            short_term_memory.add_message("assistant", analyze_data)
             
             control_response_gen = client.responses.create(
             model="gpt-4.1-mini",
             input=short_term_memory.get_messages()
             )
             control_response = control_response_gen.output_text
-            final_control_response = {"text": f"{control_response["response"]}"}
+            with open("logs/control_response.json", "w") as wc:
+                wc.write(control_response)
+            with open("logs/control_response.json", "r") as rc:
+                gen_control_response = json.load(rc)
+            final_control_response = ({"text": f"{gen_control_response["response"]}"})
             modeltts(final_control_response)
             print(f"{assistant_name}: {final_control_response}")
             keyboard_control(

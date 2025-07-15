@@ -3,7 +3,9 @@ import pygame
 from time import sleep
 from dotenv import load_dotenv
 from deepgram import SpeakOptions
-from get_api_key import get_deepgram_key
+from deepgram import DeepgramClient
+
+load_dotenv()
 
 pygame.mixer.init()
 
@@ -37,7 +39,7 @@ def modeltts(respond):
 
     try:
         load_dotenv()
-        deepgram = get_deepgram_key
+        deepgram = DeepgramClient(os.getenv("DEEPGRAM_API"))
 
         options = SpeakOptions(
             model="aura-2-andromeda-en",
@@ -50,4 +52,3 @@ def modeltts(respond):
         
     except Exception as e:
         print(f"Exception: {e}")
-

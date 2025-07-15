@@ -25,7 +25,7 @@ class ComputerAnalyze():
                 "role": "user",
                 "content": [
                     { "type": "input_text", "text": "describe the image and tell what do you see exactly."
-                    "Do **not** include any single quotes or text outside the JSON." "Use **only** double quotes for all keys and string values." "Respond **only** with a single JSON object, valid according to RFC 8259." 
+                    # "Do **not** include any single quotes or text outside the JSON." "Use **only** double quotes for all keys and string values." "Respond **only** with a single JSON object, valid according to RFC 8259." 
                     "explain the exact location of everything on the screen in full, as this description will be used to control the computer with 'Pyautogui'."
                     },
                     {
@@ -36,7 +36,7 @@ class ComputerAnalyze():
             }
         ],
         )
-        with open("logs/analyze_screen.json", "w") as ws:
+        with open("logs/analyze_screen.txt", "w") as ws:
             ws.write(analyze_response.output_text)
 
 
