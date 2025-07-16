@@ -44,6 +44,7 @@ short_term_memory.add_message(
 )
 
 
+
 while True:
     # audio_path = record_until_silence()
     # user_input = transcribe_audio(audio_path)
