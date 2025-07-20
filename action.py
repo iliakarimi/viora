@@ -42,9 +42,17 @@ class ComputerAnalyze():
 
 
 def keyboard_control(key= '', times=1, write= '', firsthkey= '', sechkey= '', hotkey= ''):
-    pyautogui.press(key, times)
-    pyautogui.write(write)
-
-    pyautogui.hotkey(hotkey)
-    with pyautogui.hold(firsthkey):
-        pyautogui.press(sechkey)
+    if write:
+        pyautogui.write(write)
+        return
+    if key:
+        pyautogui.press(key, presses=int(times) if times else 1)
+        return
+    if hotkey:
+        keys = hotkey.split('+')
+        pyautogui.hotkey(*keys)
+        return
+    if firsthkey and sechkey:
+        with pyautogui.hold(firsthkey):
+            pyautogui.press(sechkey)
+        return

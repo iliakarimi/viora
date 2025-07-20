@@ -4,8 +4,9 @@ from utils import clean_urls
 from get_api_key import get_openai_key
 from memory.short_term_memory import ShortTermMemory
 
-client = openai.OpenAI()
-get_openai_key
+client = openai.OpenAI(
+    api_key=get_openai_key()
+)
 
 with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
