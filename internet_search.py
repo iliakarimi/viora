@@ -65,7 +65,7 @@ def search_online(search_term):
 
 def needs_internet_check(user_input):
     internet_check_response = client.responses.create(
-        model="gpt-4.1-mini",
+        model="gpt-4.1-nano",
         input=[
             {
                 "role": "system",
