@@ -101,5 +101,3 @@ def needs_internet_check(user_input):
         ]
     )
     return internet_check_response.output_text
-
-
