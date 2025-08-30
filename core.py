@@ -81,17 +81,12 @@ while True:
         response_data = json.load(rr)
 
     final_response = {"text": f"{response_data["response"]}"}
-    short_term_memory.add_message("assistant", json.dumps(assistant_reply))
+    short_term_memory.add_message("assistant", json.dumps(response_data))
     modeltts(final_response)
     print(f"{assistant_name}: {final_response}")
 
     while response_data["control_action"] == "True" or gen_control_response["control_action"] == "True":
-        key_word = response_data.get("key", "")
-        times_word = response_data.get("times", "")
-        write_key = response_data.get("write", "")
-        firsthkey_word = response_data.get("firsthkey", "")
-        sechkey_word = response_data.get("sechkey", "")
-        hotkey_word = response_data.get("hotkey", "")
+
 
         ComputerAnalyze.screen_picture()
         ComputerAnalyze.screen_analyze()
@@ -99,15 +94,31 @@ while True:
             analyze_data = cr.read()
         short_term_memory.add_message("assistant", analyze_data)
 
-        control_response = assistant_reply
-        short_term_memory.add_message("assistant", json.dumps(control_response))
-        with open("logs/response.json", "w") as wc:
-            wc.write(control_response)
-        with open("logs/response.json", "r") as rc:
+        control_response = client.responses.create(
+            model="gpt-4.1-mini",
+            input=short_term_memory.get_messages()
+        )
+        control_assistant_reply = control_response.output_text
+
+
+        with open("logs/controlresponse.json", "w") as wc:
+            wc.write(control_assistant_reply)
+        with open("logs/controlresponse.json", "r") as rc:
             gen_control_response = json.load(rc)
+
+        short_term_memory.add_message("assistant", json.dumps(gen_control_response))
         final_control_response = ({"text": f"{gen_control_response["response"]}"})
+
         modeltts(final_control_response)
         print(f"{assistant_name}: {final_control_response}")
+        
+        key_word = gen_control_response.get("key", "")
+        times_word = gen_control_response.get("times", "")
+        write_key = gen_control_response.get("write", "")
+        firsthkey_word = gen_control_response.get("firsthkey", "")
+        sechkey_word = gen_control_response.get("sechkey", "")
+        hotkey_word = gen_control_response.get("hotkey", "")
+        
         keyboard_control(
             key= key_word,
             times= times_word,
@@ -116,3 +127,8 @@ while True:
             sechkey= sechkey_word,
             hotkey= hotkey_word
         )
+        
+        if gen_control_response["control_action"] == "True":
+            continue
+        else:
+            break
