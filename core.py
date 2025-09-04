@@ -86,8 +86,6 @@ while True:
     print(f"{assistant_name}: {final_response}")
 
     while response_data["control_action"] == "True" or gen_control_response["control_action"] == "True":
-
-
         ComputerAnalyze.screen_picture()
         ComputerAnalyze.screen_analyze()
         with open('logs/analyze_screen.txt', 'r') as cr:
