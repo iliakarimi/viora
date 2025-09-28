@@ -49,7 +49,6 @@ system_texts = [
     f"{action_definitions}"
     # f"You are only allowed to simulate the following keys: {allowed_keys}"
 ]
-
 for text in system_texts:
     short_term_memory.add_message("system", text)
 
