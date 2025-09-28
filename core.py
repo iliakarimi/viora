@@ -3,13 +3,15 @@ import json
 from openai import OpenAI
 from speech.tts import modeltts
 from get_api_key import get_openai_key
-from memory.short_term_memory import ShortTermMemory
-from internet_search import  needs_internet_check, search_online
+from internet_search import search_online
 from action import ComputerAnalyze, keyboard_control
+from memory.short_term_memory import ShortTermMemory
+
 
 client = OpenAI(
-    api_key=get_openai_key()
+    api_key = get_openai_key
     )
+
 
 with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
@@ -35,7 +37,7 @@ system_texts = [
     f"Refer to the user as '{user_name}' if needed.",
     f"If you need details about Ilia, use: {about_user}.",
     f"You have short-term memory: {short_term_memory}.",
-    "You can search the Internet when needed.",
+    "You can search the Internet when needed With make 'True' in 'internet_search'.",
     f"Respond {response_form}, strictly following this structure: {response_structure}.",
     "Respond only with a single JSON object, valid according to RFC 8259.",
     "Do not include any single quotes, markdown, or any extra text outside the JSON.",
@@ -51,7 +53,9 @@ system_texts = [
 for text in system_texts:
     short_term_memory.add_message("system", text)
 
+
 os.system("cls")
+
 
 while True:
     # audio_path = record_until_silence()
@@ -60,14 +64,7 @@ while True:
     # print(f"{user_name}: {user_input}")
 
     short_term_memory.add_message("user", user_input)
-    # internet_check = needs_internet_check(user_input)
 
-    # if internet_check == "YES":
-    #     online_assistant_reply = search_online(user_input)
-    #     print(f"{assistant_name}: {online_assistant_reply}")
-    #     modeltts(online_assistant_reply)
-    #     short_term_memory.add_message("assistant", online_assistant_reply)
-    # elif internet_check == "NO":
     response = client.responses.create(
         model="gpt-4.1-mini",
         input=short_term_memory.get_messages()
@@ -84,6 +81,12 @@ while True:
     short_term_memory.add_message("assistant", json.dumps(response_data))
     modeltts(final_response)
     print(f"{assistant_name}: {final_response}")
+
+    if response_data["internet_search"] == "True":
+        online_assistant_reply = search_online(user_input)
+        print(f"{assistant_name}: {online_assistant_reply}")
+        modeltts(online_assistant_reply)
+        short_term_memory.add_message("assistant", online_assistant_reply)
 
     while response_data["control_action"] == "True" or gen_control_response["control_action"] == "True":
         ComputerAnalyze.screen_picture()

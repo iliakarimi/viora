@@ -1,14 +1,14 @@
 import os
 import pygame
-from time import sleep
 from dotenv import load_dotenv
 from deepgram import SpeakOptions
 from deepgram import DeepgramClient
 
+
 load_dotenv()
 
-pygame.mixer.init()
 
+pygame.mixer.init()
 class TTSPlayer:
     def __init__(self):
         self.current_sound = None
@@ -28,9 +28,8 @@ class TTSPlayer:
         if self.current_sound:
             self.current_sound.stop()
             self.current_sound = None
-
-
 tts_player = TTSPlayer()
+
 
 def modeltts(respond):
     
