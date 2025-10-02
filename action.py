@@ -4,7 +4,7 @@ import pyautogui
 from get_api_key import get_openai_key
 
 client = openai.OpenAI(
-    api_key = get_openai_key
+    api_key = get_openai_key()
     )
 
 
