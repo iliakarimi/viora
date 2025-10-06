@@ -19,6 +19,7 @@ class TTSPlayer:
             self.stop()
         
         self.current_sound = pygame.mixer.Sound(file_path)
+        self.current_sound.set_volume(15.0)
         self.current_sound.play()
 
 
