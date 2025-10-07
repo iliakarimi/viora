@@ -1,12 +1,17 @@
 import os
+import json
 import pygame
 from dotenv import load_dotenv
 from deepgram import SpeakOptions
 from deepgram import DeepgramClient
 
+with open("configs/tts_setting.json", "r") as r:
+    tts_configs = json.load(r)
 
 load_dotenv()
 
+TTSvolume = tts_configs["tts_volume"]
+voice_select = tts_configs["voice_select"]
 
 pygame.mixer.init()
 class TTSPlayer:
@@ -19,7 +24,7 @@ class TTSPlayer:
             self.stop()
         
         self.current_sound = pygame.mixer.Sound(file_path)
-        self.current_sound.set_volume(15.0)
+        self.current_sound.set_volume(TTSvolume)
         self.current_sound.play()
 
 
@@ -42,7 +47,7 @@ def modeltts(respond):
         deepgram = DeepgramClient(os.getenv("DEEPGRAM_API"))
 
         options = SpeakOptions(
-            model="aura-2-andromeda-en",
+            model= voice_select,
         )
 
         response = deepgram.speak.rest.v("1").save(filename, SPEAK_TEXT, options)
