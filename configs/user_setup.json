@@ -1,5 +1,5 @@
 {
-    "user_name" : "",
+    "user_name" : "User Name",
     "about_user": {
         "interests": [
         "Programming",
@@ -9,6 +9,11 @@
         ]
     },
     "os" : "windows",
-    "screen_size" : "1920, 1080"
-
+    "screen_size" : "1920, 1080",
+    
+    "__comment": [
+    "You can customize 'interests' based on yours.",
+    "You can change 'os' based on your device operating system.",
+    "You can update 'screen_size' to match your display."
+    ]
 }
