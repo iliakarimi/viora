@@ -105,9 +105,9 @@ while True:
         control_assistant_reply = control_response.output_text
 
 
-        with open("logs/controlresponse.json", "w") as wc:
+        with open("logs/response.json", "w") as wc:
             wc.write(control_assistant_reply)
-        with open("logs/controlresponse.json", "r") as rc:
+        with open("logs/response.json", "r") as rc:
             gen_control_response = json.load(rc)
 
         short_term_memory.add_message("assistant", json.dumps(gen_control_response))
