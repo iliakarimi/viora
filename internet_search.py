@@ -10,6 +10,7 @@ client = openai.OpenAI(
 )
 
 
+
 with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
 
