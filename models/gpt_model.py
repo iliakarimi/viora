@@ -82,8 +82,9 @@ while True:
 
     final_response = {"text": f"{response_data["response"]}"}
     short_term_memory.add_message("assistant", json.dumps(response_data))
-    modeltts(final_response)
     print(f"{assistant_name}: {final_response}")
+    modeltts(final_response)
+
 
     if response_data["internet_search"] == "True":
         online_assistant_reply = search_online(user_input)
@@ -113,8 +114,9 @@ while True:
         short_term_memory.add_message("assistant", json.dumps(gen_control_response))
         final_control_response = ({"text": f"{gen_control_response["response"]}"})
 
-        modeltts(final_control_response)
         print(f"{assistant_name}: {final_control_response}")
+        modeltts(final_control_response)
+
         
         key_word = gen_control_response.get("key", "")
         times_word = gen_control_response.get("times", "")
