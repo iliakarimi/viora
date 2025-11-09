@@ -1,5 +1,6 @@
 # viora
 
-![image](assets/inc-viora.png)
+<img src="drawing.jpg" alt="image" width="200"/>
+
 
 **An automause Agent**
