@@ -1,3 +1,5 @@
 # viora
 
-**An Agent**
+![image](assets/inc-viora.png)
+
+**An automause Agent**
