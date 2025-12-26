@@ -6,4 +6,4 @@
 
 
 
-**Your automause Agent-Assistant**
+**An Automause Agent-Assistant**
