@@ -8,6 +8,7 @@ from deepgram import DeepgramClient
 with open("configs/tts_setting.json", "r") as r:
     tts_configs = json.load(r)
 
+
 load_dotenv()
 
 TTSvolume = tts_configs["tts_volume"]
