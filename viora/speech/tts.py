@@ -72,5 +72,3 @@ def modeltts(respond):
         
     except Exception as e:
         print(f"Exception: {e}")
-
-modeltts("Hey")
