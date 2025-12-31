@@ -16,7 +16,7 @@ load_dotenv()
 TTSvolume = tts_configs["tts_volume"]
 voice_select = tts_configs["voice_select"]
 Sample_Rate = tts_configs["sample_rate"]
-Bit_Rate = tts_configs["bit_rate"]
+encoding = tts_configs["encoding"]
 
 
 
@@ -48,7 +48,7 @@ tts_player = TTSPlayer()
 def modeltts(respond):
     
     SPEAK_TEXT = respond
-    filename = "logs/response.wav"
+    filename = "logs/response.mp3"
 
     try:
         load_dotenv()
@@ -58,7 +58,7 @@ def modeltts(respond):
             text=SPEAK_TEXT,
             model=voice_select,
             sample_rate=Sample_Rate,
-            bit_rate=Bit_Rate
+            encoding=encoding
         )
 
         # Save the audio file
@@ -73,3 +73,4 @@ def modeltts(respond):
     except Exception as e:
         print(f"Exception: {e}")
 
+modeltts("Hey")

@@ -2,7 +2,7 @@
     "tts_volume" : 1.0,
     "voice_select" : "aura-2-andromeda-en",
     "sample_rate" : 16000,
-    "bit_rate" : 24,
+    "encoding" : "linear16",
 
 
     
