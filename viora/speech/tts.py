@@ -2,7 +2,6 @@ import os
 import json
 import pygame
 from dotenv import load_dotenv
-from deepgram import SpeakOptions
 from deepgram import DeepgramClient
 
 with open("configs/tts_setting.json", "r") as r:
@@ -11,8 +10,16 @@ with open("configs/tts_setting.json", "r") as r:
 
 load_dotenv()
 
+
+
+
 TTSvolume = tts_configs["tts_volume"]
 voice_select = tts_configs["voice_select"]
+Sample_Rate = tts_configs["sample_rate"]
+Bit_Rate = tts_configs["bit_rate"]
+
+
+
 
 pygame.mixer.init()
 class TTSPlayer:
@@ -45,16 +52,24 @@ def modeltts(respond):
 
     try:
         load_dotenv()
-        deepgram = DeepgramClient(os.getenv("DEEPGRAM_API"))
+        client = DeepgramClient(api_key=os.getenv("DEEPGRAM_API"))
 
-        options = SpeakOptions(
-            model= voice_select,
+        response = client.speak.v1.audio.generate(
+            text=SPEAK_TEXT,
+            model=voice_select,
+            sample_rate=Sample_Rate,
+            bit_rate=Bit_Rate
         )
 
-        response = deepgram.speak.rest.v("1").save(filename, SPEAK_TEXT, options)
+        # Save the audio file
+        with open(filename, "wb") as audio_file:
+            # Iterate through the generator and write chunks
+            for chunk in response:
+                audio_file.write(chunk)
         tts_player.play(filename)
         while pygame.mixer.get_busy():
             pygame.time.delay(100)
         
     except Exception as e:
         print(f"Exception: {e}")
+

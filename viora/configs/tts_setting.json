@@ -1,9 +1,15 @@
 {
     "tts_volume" : 1.0,
     "voice_select" : "aura-2-andromeda-en",
+    "sample_rate" : 16000,
+    "bit_rate" : 24,
 
+
+    
     "__comment" : [
         "you can change volume between 0.0 to 1.0.",
-        "aura-2-andromeda-en == default 'Viora' voice."
+        "aura-2-andromeda-en == default 'Viora' voice.",
+        "Sample Rate Default Value == 16000Hz",
+        "Bit Rate Default Value == 24kbps"
 ]
 }
