@@ -92,49 +92,49 @@ while True:
         modeltts(online_assistant_reply)
         short_term_memory.add_message("assistant", online_assistant_reply)
 
-    # while response_data["control_action"] == "True":
-    #     ComputerAnalyze.screen_picture()
-    #     ComputerAnalyze.screen_analyze()
-    #     with open('logs/analyze_screen.txt', 'r') as cr:
-    #         analyze_data = cr.read()
-    #     short_term_memory.add_message("assistant", analyze_data)
+    while response_data["control_action"] == "True":
+        ComputerAnalyze.screen_picture()
+        ComputerAnalyze.screen_analyze()
+        with open('logs/analyze_screen.txt', 'r') as cr:
+            analyze_data = cr.read()
+        short_term_memory.add_message("assistant", analyze_data)
 
-    #     control_response = client.responses.create(
-    #         model="gpt-4.1-mini",
-    #         input=short_term_memory.get_messages()
-    #     )
-    #     control_assistant_reply = control_response.output_text
+        control_response = client.responses.create(
+            model="gpt-4.1-mini",
+            input=short_term_memory.get_messages()
+        )
+        control_assistant_reply = control_response.output_text
 
 
-    #     with open("logs/response.json", "w") as wc:
-    #         wc.write(control_assistant_reply)
-    #     with open("logs/response.json", "r") as rc:
-    #         gen_control_response = json.load(rc)
+        with open("logs/response.json", "w") as wc:
+            wc.write(control_assistant_reply)
+        with open("logs/response.json", "r") as rc:
+            gen_control_response = json.load(rc)
 
-    #     short_term_memory.add_message("assistant", json.dumps(gen_control_response))
-    #     final_control_response = ({"text": f"{gen_control_response["response"]}"})
+        short_term_memory.add_message("assistant", json.dumps(gen_control_response))
+        final_control_response = ({"text": f"{gen_control_response["response"]}"})
 
-    #     print(f"{assistant_name}: {final_control_response}")
-    #     modeltts(final_control_response)
+        print(f"{assistant_name}: {final_control_response}")
+        modeltts(final_control_response)
 
         
-    #     key_word = gen_control_response.get("key", "")
-    #     times_word = gen_control_response.get("times", "")
-    #     write_key = gen_control_response.get("write", "")
-    #     firsthkey_word = gen_control_response.get("firsthkey", "")
-    #     sechkey_word = gen_control_response.get("sechkey", "")
-    #     hotkey_word = gen_control_response.get("hotkey", "")
+        key_word = gen_control_response.get("key", "")
+        times_word = gen_control_response.get("times", "")
+        write_key = gen_control_response.get("write", "")
+        firsthkey_word = gen_control_response.get("firsthkey", "")
+        sechkey_word = gen_control_response.get("sechkey", "")
+        hotkey_word = gen_control_response.get("hotkey", "")
         
-    #     keyboard_control(
-    #         key= key_word,
-    #         times= times_word,
-    #         write= write_key,
-    #         firsthkey= firsthkey_word,
-    #         sechkey= sechkey_word,
-    #         hotkey= hotkey_word
-    #     )
+        keyboard_control(
+            key= key_word,
+            times= times_word,
+            write= write_key,
+            firsthkey= firsthkey_word,
+            sechkey= sechkey_word,
+            hotkey= hotkey_word
+        )
         
-    #     if gen_control_response["control_action"] == "True":
-    #         continue
-    #     else:
-    #         break
+        if gen_control_response["control_action"] == "True":
+            continue
+        else:
+            break
