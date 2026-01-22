@@ -12,9 +12,15 @@ from tools.action import ComputerAnalyze, keyboard_control
 from memory.short_term_memory import ShortTermMemory
 
 
+
+
+
 client = OpenAI(
     api_key = get_openai_key()
     )
+
+
+
 
 
 with open('configs/initial_agent_data.json', 'r') as file:
@@ -56,8 +62,7 @@ system_texts = [
 for text in system_texts:
     short_term_memory.add_message("system", text)
 
-import os
-os.system("cls")
+
 
 
 while True:
