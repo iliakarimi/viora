@@ -1,5 +1,8 @@
 # viora
 
+
+**An Automause Agent-Assistant**
+
 <p align="center">
   <img width="500"src="assets/inc-viora.png">
 </p>
@@ -10,4 +13,3 @@
 </p>
 
 
-**An Automause Agent-Assistant**
