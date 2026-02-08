@@ -64,6 +64,8 @@ for text in system_texts:
 
 
 
+os.system("clear")
+
 
 while True:
     # audio_path = record_until_silence()
