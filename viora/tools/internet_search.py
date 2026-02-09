@@ -13,7 +13,8 @@ client = openai.OpenAI(
 )
 
 
-
+with open("configs/models.json", "r") as modl:
+    model_conf = json.load(modl)
 with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
 
@@ -21,11 +22,11 @@ short_term_memory = ShortTermMemory()
 
 response_form = assistant_data["response_form"]
 response_structure = assistant_data["response_structure"]
-
+model_name = model_conf["GPT"]
 
 def search_online(search_term):
     raw_internet_response = client.responses.create(
-        model="gpt-4.1-mini",
+        model=model_name,
         tools=[{
             "type": "web_search_preview",
             "search_context_size": "low",
@@ -42,7 +43,7 @@ def search_online(search_term):
         raw_text = rr.read()
     raw_online_response_data = clean_urls(raw_text)
     internet_response = client.responses.create(
-        model="gpt-4.1-mini",
+        model=model_name,
         input=[
             {"role": "system", "content": 
              "summarize the news into a single paragraph under 1800 characters."
