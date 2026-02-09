@@ -21,13 +21,18 @@ client = OpenAI(
 
 
 
+short_term_memory = ShortTermMemory()
 
 
+
+with open("configs/models.json", "r") as modl:
+    model_conf = json.load(modl)
 with open('configs/initial_agent_data.json', 'r') as file:
     assistant_data = json.load(file)
 with open('configs/user_setup.json', 'r') as userfile:
     user_data = json.load(userfile)
-short_term_memory = ShortTermMemory()
+
+
 
 assistant_name = assistant_data["name"]
 user_name = user_data["user_name"]
@@ -40,6 +45,9 @@ computer_control = assistant_data["computer_control"]
 action_scheduling = assistant_data["action_scheduling"]
 action_definitions = assistant_data["action_definitions"]
 allowed_keys = assistant_data["allowed_keys"]
+model_name = model_conf["GPT"]
+
+
 
 system_texts = [
     f"You are {assistant_name}, an agentic assistant for {user_name}. You are an agent — please keep going until the user's query is completely resolved before ending your turn. Only yield back when you're sure the task is complete.",
@@ -76,7 +84,7 @@ while True:
     short_term_memory.add_message("user", user_input)
 
     response = client.responses.create(
-        model="gpt-4.1-mini",
+        model=model_name,
         input=short_term_memory.get_messages()
     )
 
@@ -107,7 +115,7 @@ while True:
         short_term_memory.add_message("assistant", analyze_data)
 
         control_response = client.responses.create(
-            model="gpt-4.1-mini",
+            model=model_name,
             input=short_term_memory.get_messages()
         )
         control_assistant_reply = control_response.output_text

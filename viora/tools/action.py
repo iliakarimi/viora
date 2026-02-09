@@ -1,15 +1,27 @@
 import os, sys
 sys.path.insert(1, "/".join(os.path.realpath(__file__).split("/")[0:-2]))
 
-
+import json
 import openai
 import base64
 import pyautogui
 from utils.get_api_key import get_openai_key
 
+
+
+
+
 client = openai.OpenAI(
     api_key = get_openai_key()
     )
+
+
+
+
+with open("configs/models.json", "r") as modl:
+    model_conf = json.load(modl)
+
+model_name = model_conf["GPT"]
 
 
 
@@ -25,7 +37,7 @@ class ComputerAnalyze():
         base64_image = encode_image(image_f)
 
         analyze_response = client.responses.create(
-        model="gpt-4.1-mini",
+        model=model_name,
         input=[
             {
                 "role": "user",
@@ -53,6 +65,10 @@ class ComputerAnalyze():
         )
         with open("logs/analyze_screen.txt", "w") as ws:
             ws.write(analyze_response.output_text)
+
+
+
+
 
 
 def keyboard_control(key= '', times=1, write= '', firsthkey= '', sechkey= '', hotkey= ''):
