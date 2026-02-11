@@ -5,6 +5,7 @@ import json
 import openai
 import base64
 import pyautogui
+from time import sleep
 from utils.get_api_key import get_openai_key
 
 
@@ -30,6 +31,9 @@ def encode_image(image_path):
         return base64.b64encode(image_file.read()).decode("utf-8")
     
 class ComputerAnalyze():
+    
+    def __init__(self):
+        pass
     def screen_picture():
         pyautogui.screenshot('logs/snapshot.png')
     def screen_analyze():
@@ -69,20 +73,37 @@ class ComputerAnalyze():
 
 
 
+class computer_control():
+    def __init__(self, key= '', times=1, write= '', firsthkey= '', sechkey= '', hotkey= ''):
+        self.key = key
+        self.times = times
+        self.write = write
+        self.firsthkey = firsthkey
+        self.sechkey = sechkey
+        self.hotkey = hotkey
 
+    def keyboard_control(self, key, times, write, firsthkey, sechkey, hotkey):
+        if write:
+            pyautogui.write(write)
+            return
+        if key:
+            pyautogui.press(key, presses=int(times) if times else 1)
+            return
+        if hotkey:
+            keys = hotkey.split('+')
+            pyautogui.hotkey(*keys)
+            return
+        if firsthkey and sechkey:
+            with pyautogui.hold(firsthkey):
+                pyautogui.press(sechkey)
+            return
 
-def keyboard_control(key= '', times=1, write= '', firsthkey= '', sechkey= '', hotkey= ''):
-    if write:
-        pyautogui.write(write)
-        return
-    if key:
-        pyautogui.press(key, presses=int(times) if times else 1)
-        return
-    if hotkey:
-        keys = hotkey.split('+')
-        pyautogui.hotkey(*keys)
-        return
-    if firsthkey and sechkey:
-        with pyautogui.hold(firsthkey):
-            pyautogui.press(sechkey)
-        return
+    def mouse_control(self, left_click, right_click, times):
+        pyautogui.leftClick()
+        
+        right_click = pyautogui.click()
+        for rc in right_click:
+            sleep(times)
+            return rc
+            
+        pass
