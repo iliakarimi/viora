@@ -6,7 +6,7 @@ sys.path.insert(1, "/".join(os.path.realpath(__file__).split("/")[0:-2]))
 import json
 from openai import OpenAI
 from speech.tts import modeltts
-from utils.get_api_key import get_openai_key
+from utils.get_api_key import openai_key
 from tools.internet_search import search_online
 from tools.action import ComputerAnalyze, keyboard_control
 from memory.short_term_memory import ShortTermMemory
@@ -16,7 +16,7 @@ from memory.short_term_memory import ShortTermMemory
 
 
 client = OpenAI(
-    api_key = get_openai_key()
+    api_key = openai_key
     )
 
 

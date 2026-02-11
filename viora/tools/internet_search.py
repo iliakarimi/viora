@@ -13,6 +13,11 @@ client = openai.OpenAI(
 )
 
 
+
+
+
+
+
 with open("configs/models.json", "r") as modl:
     model_conf = json.load(modl)
 with open('configs/initial_agent_data.json', 'r') as file:
@@ -23,6 +28,13 @@ short_term_memory = ShortTermMemory()
 response_form = assistant_data["response_form"]
 response_structure = assistant_data["response_structure"]
 model_name = model_conf["GPT"]
+
+
+
+
+
+
+
 
 def search_online(search_term):
     raw_internet_response = client.responses.create(
