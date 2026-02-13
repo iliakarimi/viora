@@ -99,11 +99,10 @@ class computer_control():
             return
 
     def mouse_control(self, left_click, right_click, times):
-        pyautogui.leftClick()
+        # pyautogui.leftClick()
         
-        right_click = pyautogui.click()
-        for rc in right_click:
-            sleep(times)
-            return rc
-            
+        # right_click = pyautogui.click()
+        # for rc in right_click:
+        #     sleep(times)
+        #     return rc 
         pass
