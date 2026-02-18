@@ -2,19 +2,20 @@ import os, sys
 sys.path.insert(1, "/".join(os.path.realpath(__file__).split("/")[0:-2]))
 
 import json
-import openai
+# import openai
 import base64
 import pyautogui
 from time import sleep
-from utils.get_api_key import get_openai_key
+import PIL
+# from utils.get_api_key import get_openai_key
 
 
 
 
 
-client = openai.OpenAI(
-    api_key = get_openai_key()
-    )
+# client = openai.OpenAI(
+#     api_key = get_openai_key()
+#     )
 
 
 
@@ -34,43 +35,48 @@ class ComputerAnalyze():
     
     def __init__(self):
         pass
+
+
     def screen_picture():
-        pyautogui.screenshot('logs/snapshot.png')
-    def screen_analyze():
-        image_f = "logs/snapshot.png"
-        base64_image = encode_image(image_f)
-
-        analyze_response = client.responses.create(
-        model=model_name,
-        input=[
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "input_text",
-                        "text": (
-                            "Analyze the image and describe exactly what is visible. For every element (text, buttons, icons, images, etc.), provide its precise spatial location on the screen, using relative positions (top-left, center, bottom-right) or coordinates if possible. Do not speculate about function, intent, or aesthetics—only describe the visual structure clearly enough for programmatic interaction using PyAutoGUI."
-                            "You are an image analysis assistant. "
-                            "Your task is to describe the given image in extreme detail, focusing on spatial relationships, "
-                            "object positions, and UI elements that could be interacted with. "
-                            "Output must be precise enough for programmatic control (e.g. using pyautogui). "
-                            "Do not describe feelings, colors, or aesthetic details unless relevant to object identification."
-                            "Use coordinates and relative position terms like 'top-left', 'center-right', 'bottom-middle', etc. "
-                            "Return data in structured JSON format for parsing."
-                        )
-                    },
-                    {
-                        "type": "input_image",
-                        "image_url": f"data:image/jpeg;base64,{base64_image}",
-                    },
-                ],
-            }
-        ],
-        )
-        with open("logs/analyze_screen.txt", "w") as ws:
-            ws.write(analyze_response.output_text)
+        pyautogui.screenshot('snapshot.png')
 
 
+    # def screen_analyze():
+    #     image_f = "logs/snapshot.png"
+    #     base64_image = encode_image(image_f)
+
+    #     analyze_response = client.responses.create(
+    #     model=model_name,
+    #     input=[
+    #         {
+    #             "role": "user",
+    #             "content": [
+    #                 {
+    #                     "type": "input_text",
+    #                     "text": (
+    #                         "Analyze the image and describe exactly what is visible. For every element (text, buttons, icons, images, etc.), provide its precise spatial location on the screen, using relative positions (top-left, center, bottom-right) or coordinates if possible. Do not speculate about function, intent, or aesthetics—only describe the visual structure clearly enough for programmatic interaction using PyAutoGUI."
+    #                         "You are an image analysis assistant. "
+    #                         "Your task is to describe the given image in extreme detail, focusing on spatial relationships, "
+    #                         "object positions, and UI elements that could be interacted with. "
+    #                         "Output must be precise enough for programmatic control (e.g. using pyautogui). "
+    #                         "Do not describe feelings, colors, or aesthetic details unless relevant to object identification."
+    #                         "Use coordinates and relative position terms like 'top-left', 'center-right', 'bottom-middle', etc. "
+    #                         "Return data in structured JSON format for parsing."
+    #                     )
+    #                 },
+    #                 {
+    #                     "type": "input_image",
+    #                     "image_url": f"data:image/jpeg;base64,{base64_image}",
+    #                 },
+    #             ],
+    #         }
+    #     ],
+    #     )
+    #     with open("logs/analyze_screen.txt", "w") as ws:
+    #         ws.write(analyze_response.output_text)
+
+
+ComputerAnalyze.screen_picture()
 
 
 class computer_control():
