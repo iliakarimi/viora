@@ -4,18 +4,13 @@ import os
 os.system("xhost +")
 
 
-from models import gpt_model
-
+from models.gpt import __gpt_model
 
 
 
 def run_gpt():
     
-
-
-    
-    gpt_model.run()
-
+    __gpt_model.run()
 
 
 

@@ -3,20 +3,13 @@ sys.path.insert(1, "/".join(os.path.realpath(__file__).split("/")[0:-2]))
 
 import json
 import openai
-import base64
 import pyautogui
-from time import sleep
-from utils.get_api_key import get_openai_key
-
-
-
+from utils.encode import encode_image
 
 
 client = openai.OpenAI(
-    api_key = get_openai_key()
+    api_key= None
     )
-
-
 
 
 with open("configs/models.json", "r") as modl:
@@ -25,17 +18,14 @@ with open("configs/models.json", "r") as modl:
 model_name = model_conf["GPT"]
 
 
-
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
-    
 class ComputerAnalyze():
+    """
+    Take an ScreenShot from the Screen
+    """
 
     @classmethod
     def screen_picture(cls):
         pyautogui.screenshot('snapshot.png')
-
 
     @classmethod
     def screen_analyze(cls):
@@ -46,7 +36,7 @@ class ComputerAnalyze():
         model=model_name,
         input=[
             {
-                "role": "user",
+                "role": "developer",
                 "content": [
                     {
                         "type": "input_text",
@@ -69,14 +59,18 @@ class ComputerAnalyze():
             }
         ],
         )
+
         with open("logs/analyze_screen.txt", "w") as ws:
             ws.write(analyze_response.output_text)
 
 
-ComputerAnalyze.screen_picture()
 
 
-class computer_control():
+class ComputerControl():
+    """
+    Control Computer
+    """
+
     def __init__(self, key= '', times=1, write= '', firsthkey= '', sechkey= '', hotkey= '', left_click=None, right_click=None, wait_time=None, scroll=None): #The 'None' for mouse Parameter's temperary.
         self.key = key
         self.times = times
@@ -89,17 +83,21 @@ class computer_control():
         self.wait_time = wait_time
         self.scroll = scroll
 
-    def keyboard_control(self, key, times, write, firsthkey, sechkey, hotkey):
+    def keyboard_control(self, key=None, times=None, write=None, firsthkey=None, sechkey=None, hotkey=None):
+
         if write:
             pyautogui.write(write)
             return
+
         if key:
             pyautogui.press(key, presses=int(times) if times else 1)
             return
+
         if hotkey:
             keys = hotkey.split('+')
             pyautogui.hotkey(*keys)
             return
+
         if firsthkey and sechkey:
             with pyautogui.hold(firsthkey):
                 pyautogui.press(sechkey)
@@ -114,6 +112,4 @@ class computer_control():
         #     return rc 
         
         # m_scrool = pyautogui.scroll(scroll)
-
-
         pass
