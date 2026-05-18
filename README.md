@@ -7,7 +7,7 @@
 
 ## Viora Struc Graph
 <p align="center">
-  <img width="1000"src="assets/graph.jpg">
+  <img width="640"src="assets/graph.png">
 </p>
 
 
