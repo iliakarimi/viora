@@ -9,7 +9,7 @@ key=os.getenv("OPENAI_API_KEY")
 
 
 client = openai.OpenAI(
-    api_key=f"{key}"
+    api_key=key
     )
 
 
@@ -19,11 +19,10 @@ with open("configs/models.json", "r") as mc:
 model_name = model_conf["GPT"]
 
 
-def response_openai(input:str | None, tools:str | None, stream=False):
+def response_openai(input:str | None, model_name = "gpt4.1-mini", stream=False):
     try:
         response = client.responses.create(
             model=model_name,
-            tools=tools,
             input=input,
             stream=stream
             )
@@ -36,7 +35,7 @@ def response_openai(input:str | None, tools:str | None, stream=False):
     except:
 
         if openai.APIConnectionError:
-            print("CONNECTION ERROR: Check Your Internet Connection.")
+            print("CONNECTION ERROR: ")
         
         elif openai.RateLimitError:
             print("OUT OF API RATE LIMIT: Check your Billing Details at https://dashboard.openai.com")
@@ -46,3 +45,5 @@ def response_openai(input:str | None, tools:str | None, stream=False):
         
         else:
             print("Unexcpected Error!")
+
+print(response_openai)
