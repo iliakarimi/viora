@@ -4,7 +4,7 @@ import os
 os.system("xhost +")
 
 
-from models.gpt import __gpt_model
+from gpt import __gpt_model
 
 
 
