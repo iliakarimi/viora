@@ -16,6 +16,3 @@ def __screen_picture():
     
     except Exception as e:
         raise f"An Error Happend: {e}"
-
-
-__screen_picture()
