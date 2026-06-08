@@ -53,3 +53,4 @@ class ComputerControl():
         
         m_scrool = pyautogui.scroll(scroll)
         pass
+
