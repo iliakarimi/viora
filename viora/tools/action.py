@@ -43,13 +43,13 @@ class ComputerControl():
                 pyautogui.press(sechkey)
             return
 
-    def mouse_control(self, left_click, right_click, wait_time, scroll):
+    def mouse_control(self, left_click, right_click, wait_time, scroll, move):
         pyautogui.leftClick()
-        
-        right_click = pyautogui.click(right_click)
-        for rc in right_click:
-            sleep(wait_time)
-            return rc 
+        if right_click:
+            right_click = pyautogui.click(right_click)
+            for rc in right_click:
+                sleep(wait_time)
+                return rc 
         
         m_scrool = pyautogui.scroll(scroll)
         pass
