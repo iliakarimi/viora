@@ -3,6 +3,7 @@ import json
 import openai
 import dotenv
 from utils.encode import encode_image
+from utils.snapshot import __screen_picture
 
 
 dotenv.load_dotenv()
@@ -17,10 +18,16 @@ client = openai.OpenAI(
 
 with open("configs/models.json", "r") as mc:
     model_conf = json.load(mc)
+with open("configs/user_config.json", "r") as uc:
+    user_conf = json.load(uc)
+
 
 model_name = model_conf["GPT"]
 
-from utils.snapshot import __screen_picture
+user_os = user_conf["os"]
+user_name = user_conf["user_name"]
+screen_size = user_conf["screen_size"]
+
 
 __screen_picture()
 image_f = "logs/snapshot.png"
@@ -32,6 +39,10 @@ def response_openai(input:str | None, model_name = "gpt-4.1-mini", stream=False)
         response = client.responses.create(
             model=model_name,
             input=[
+                {
+                    "role": "developer",
+                    "content": user_conf
+                },
                 {
                     "role": "user",
                     "content": [
@@ -64,5 +75,3 @@ def response_openai(input:str | None, model_name = "gpt-4.1-mini", stream=False)
         
         else:
             print("Unexcpected Error!")
-
-response_openai("can you see my screen?")
