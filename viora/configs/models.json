@@ -1,7 +1,7 @@
 {
     "GPT" : "gpt-4.1-mini",
-    "GEMINI" : 0,
-    "CLAUDE" : 0,
-    "GROK" : 0,
-    "OLLAMA" : 0
+    "GEMINI" : "None",
+    "CLAUDE" : "None",
+    "GROK" : "None",
+    "OLLAMA" : "None"
 }
