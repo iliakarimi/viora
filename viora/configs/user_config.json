@@ -1,0 +1,16 @@
+{
+    "user_name" : "Ilia",
+    "about_user": {
+        "interests": [
+            ""
+        ]
+    },
+    "os" : "linux",
+    "screen_size" : "1920, 1080",
+    
+    "__comment": [
+    "You can customize 'interests' based on yours.",
+    "You can change 'os' based on your device operating system.",
+    "You can change 'screen_size' manualy to change your display."
+    ]
+}
