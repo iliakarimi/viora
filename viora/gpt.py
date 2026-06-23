@@ -1,9 +1,9 @@
 import os
 import json
-import openai
 import dotenv
 from utils.encode import encode_image
 from utils.snapshot import __screen_picture
+from openai import OpenAI, APIConnectionError, RateLimitError, APITimeoutError
 
 
 dotenv.load_dotenv()
@@ -11,7 +11,7 @@ dotenv.load_dotenv()
 key=str(os.getenv("OPENAI_API_KEY"))
 
 
-client = openai.OpenAI(
+client = OpenAI(
     api_key=key
     )
 
@@ -64,14 +64,14 @@ def response_openai(input:str | None, model_name = "gpt-4.1-mini", stream=False)
 
     except:
 
-        if openai.APIConnectionError:
-            print(f"API CONNECTION ERROR:")
+        if APIConnectionError:
+            print("API CONNECTION ERROR.")
         
-        elif openai.RateLimitError:
-            print("OUT OF API RATE LIMIT: Check your Billing Details at https://dashboard.openai.com")
+        elif RateLimitError:
+            print("OUT OF API RATE LIMIT: Check your Billing Details at https://dashboard.openai.com.")
         
-        elif openai.APITimeoutError:
-            print("API TIMEOUT ERROR: Check Your Internet Connection.")
+        elif APITimeoutError:
+            print("API TIMEOUT ERROR.")
         
         else:
             print("Unexcpected Error!")

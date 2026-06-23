@@ -48,9 +48,9 @@ class ComputerControl():
                 return f"Error: {e}"
             return
         
-        elif click_times or click_button:
+        elif click_button:
             try:
-                pg.click(clicks=click_times, button=click_button)
+                pg.click(button=click_button, clicks=click_times)
             except Exception as e:
                 return f"Error: {e}"
             return
