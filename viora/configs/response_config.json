@@ -1,0 +1,6 @@
+{
+    "response_format" : "{'response':'','control_action':'False','key':'','times':0,'write':'','firsthkey':'','sechkey':'','hotkey':'','movex':'None','movey':'None','click_button':'None','click_time':0,'scroll':'None'}",
+    "mouse_order" : "mouse actions(movex + movey → click_button+click_time → scroll)",
+    "keyboard_order" : "keyboard actions (write → key → hotkey → hold)",
+    "action_definitions" : "movex+movey(mouse position on screen), click_button(mouse button press)+click_times(the number of times should to press the mouse button, defualt 1), scroll(scroll with mouse), write (typing action, highest priority among keyboard actions), key (single key press), hotkey (key combination), firsthkey+sechkey (hold and press combination) for keyborad actions"
+}
