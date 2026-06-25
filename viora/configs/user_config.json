@@ -1,12 +1,8 @@
 {
     "user_name" : "Ilia",
-    "about_user": {
-        "interests": [
-            ""
-        ]
-    },
-    "os" : "linux",
-    "screen_size" : "1920, 1080",
+    
+    "os" : "arch-linux",
+    "screen_size" : "1919, 1079",
     
     "__comment": [
     "You can customize 'interests' based on yours.",
