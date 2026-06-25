@@ -3,6 +3,7 @@ import json
 import dotenv
 from utils.encode import encode_image
 from utils.snapshot import __screen_picture
+from configs.model_sys_text import system_text
 from openai import OpenAI, APIConnectionError, RateLimitError, APITimeoutError
 
 
@@ -18,15 +19,8 @@ client = OpenAI(
 
 with open("configs/models.json", "r") as mc:
     model_conf = json.load(mc)
-with open("configs/user_config.json", "r") as uc:
-    user_conf = json.load(uc)
-
 
 model_name = model_conf["GPT"]
-
-user_os = user_conf["os"]
-user_name = user_conf["user_name"]
-screen_size = user_conf["screen_size"]
 
 
 __screen_picture()
@@ -34,14 +28,14 @@ image_f = "logs/snapshot.png"
 base64_image = encode_image(image_f)
 
 
-def response_openai(input:str | None, model_name = "gpt-4.1-mini", stream=False):
+def response_openai(input:str | None, model_name = model_name, stream=False):
     try:
         response = client.responses.create(
             model=model_name,
             input=[
                 {
                     "role": "developer",
-                    "content": user_conf
+                    "content": system_text
                 },
                 {
                     "role": "user",
@@ -62,16 +56,15 @@ def response_openai(input:str | None, model_name = "gpt-4.1-mini", stream=False)
         with open("logs/response.json", "w") as wr:
             wr.write(model_reply)
 
-    except:
+    except APIConnectionError as e:
 
-        if APIConnectionError:
-            print("API CONNECTION ERROR.")
+        print(f"API CONNECTION ERROR: {e}")
         
-        elif RateLimitError:
-            print("OUT OF API RATE LIMIT: Check your Billing Details at https://dashboard.openai.com.")
+    except RateLimitError as e:
+        print(f"OUT OF API RATE LIMIT: {e}")
         
-        elif APITimeoutError:
-            print("API TIMEOUT ERROR.")
+    except APITimeoutError:
+        print(f"API TIMEOUT ERROR: {e}")
         
-        else:
-            print("Unexcpected Error!")
+    except Exception as e:
+        print(f"Unexcpected Error: {e}")
