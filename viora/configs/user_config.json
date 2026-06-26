@@ -1,12 +1,1 @@
-{
-    "user_name" : "Ilia",
-    
-    "os" : "arch-linux",
-    "screen_size" : "1919, 1079",
-    
-    "__comment": [
-    "You can customize 'interests' based on yours.",
-    "You can change 'os' based on your device operating system.",
-    "You can change 'screen_size' manualy to change your display."
-    ]
-}
+{"user_name": "Ilia", "os": "arch-linux", "screen_size": "1919*1079", "__comment": ["You can customize 'interests' based on yours.", "You can change 'os' based on your device operating system.", "You can change 'screen_size' manualy to change your display."]}

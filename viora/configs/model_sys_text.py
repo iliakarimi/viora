@@ -1,8 +1,14 @@
 import json
+from utils.correct_resolution import correct_resolution as cr
 
 
 with open("configs/user_config.json", "r") as uc:
     user_conf = json.load(uc)
+
+user_conf["screen_size"] = cr()
+
+with open("configs/user_config.json", "w") as wus:
+    json.dump(user_conf, wus)
 
 user_os = user_conf["os"]
 user_name = user_conf["user_name"]
@@ -16,6 +22,7 @@ response_format = model_conf["response_format"]
 mouse_order = model_conf["mouse_order"]
 keyboard_order = model_conf["keyboard_order"]
 action_defi = model_conf["action_definitions"]
+
 
 
 system_text = str([
