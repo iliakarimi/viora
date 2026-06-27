@@ -28,7 +28,7 @@ image_f = "logs/snapshot.png"
 base64_image = encode_image(image_f)
 
 
-def response_openai(input:str | None, model_name = model_name, stream=False):
+def openai_response(input:str | None, model_name = model_name, stream=False, memory=None):
     try:
         response = client.responses.create(
             model=model_name,
@@ -46,7 +46,11 @@ def response_openai(input:str | None, model_name = model_name, stream=False):
                             "image_url": f"data:image/jpeg;base64,{base64_image}"
                         }
                     ]
-                }
+                },
+                {
+                    "role": "assistant",
+                    "content": memory
+                },
             ],
             stream=stream
             )
