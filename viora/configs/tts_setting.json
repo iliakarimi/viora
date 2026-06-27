@@ -1,15 +1,13 @@
 {
-    "tts_volume" : 1.0,
-    "voice_select" : "aura-2-andromeda-en",
-    "sample_rate" : 16000,
+    "voice_select" : "aura-2-thalia-en",
+    "sample_rate" : 24000,
     "encoding" : "linear16",
 
 
     
     "__comment" : [
-        "you can change volume between 0.0 to 1.0.",
-        "aura-2-andromeda-en == default 'Viora' voice.",
-        "Sample Rate Default Value == 16000Hz",
-        "Bit Rate Default Value == 24kbps"
-]
+        "Recomended Voice: 'aura-2-andromeda-en' for Female-Voice, 'aura-2-arcas-en' for Male-Voice",
+        "Sample Rate Default Value Default: 24000Hz",
+        "You can Choose Sample Rate From: '8000, 16000, 24000, 32000, 44100, and 48000'"
+    ]
 }
