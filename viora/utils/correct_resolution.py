@@ -1,7 +1,5 @@
 import pyautogui as pyagui
 
-# print()
-
 
 def correct_resolution():
     
