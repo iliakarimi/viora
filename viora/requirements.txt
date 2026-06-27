@@ -1,6 +1,8 @@
-openai==2.32.0
 dotenv==0.9.9
-pyautogui==0.9.54
-deepgram-sdk==6.1.1
-python-xlib==0.33
 pillow==12.2.0
+openai==2.32.0
+soundfile==0.14.0
+python-xlib==0.33
+pyautogui==0.9.54
+sounddevice==0.5.5
+deepgram-sdk==6.1.1
