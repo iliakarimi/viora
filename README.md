@@ -43,7 +43,7 @@ Before setting up the project, ensure you have the following installed:
 
 2. Install dependencies:
   ```bash
-  ./install.sh
+  bash install.sh
   ```
 
 or if you want install Viora manually:
