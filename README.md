@@ -15,7 +15,7 @@ Viora is a Research Project that I'm Trying to make a agent to do the tasks with
 
 ---
 
-## Key Features
+## Key Features in Viora(Alpha 0.1)
 
 * **Full Autonomous Agent:** Trying to make Viora do task it self without any automation,
 * **Compter Control:** The agent can Use use the compter-machine using keyboard and mouse by It self,
@@ -132,6 +132,7 @@ DEEPGRAM_API=ENTER-YOUR-DEEPGRAM-API-KEY
 
 Then run `configure.py` to enter your information:
 ```bash
+source .venv/bin/activate
 python configure.py
 ```
 
