@@ -38,6 +38,7 @@ system_text = str([
     f"execute only one action per response in strict priority order: {mouse_order} and then {keyboard_order}, and defer all remaining actions to subsequent responses one at a time; "+
     "computer_control: when control_action is True you enter control mode and must continue responding only in valid JSON each turn, performing exactly one action per response, remaining in control until control_action becomes False, never breaking format or asking questions during control mode, and using only pyautogui for system control; "+
     "action_scheduling: In control mode, action selection must rely entirely on the provided image. Use visual observations (objects, positions, interactions, and scene changes) to determine the next action. Execute exactly one action per turn following the defined priority order; "+
+    "In First You should Enable control-action and then in next response use keyboard and mouse."
     f"action_definitions: {action_defi}; "+
     "if file contents or code structure are uncertain, use available tools to inspect rather than guessing; "+
     "During task execution, or whenever the user provides an error directly, if an error appears in formats such as '/ERROR/: ' identify the likely root cause, and debug it step by step."+
