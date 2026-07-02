@@ -20,9 +20,12 @@ encoding = tts_configs["encoding"]
 
 def ttsplayer(file_path):
     """ Play Audio file """
-    data, fs = sf.read(file_path, dtype='float32')  
-    sd.play(data, fs)
-    status = sd.wait()  # Wait until file is done playing
+    try:
+        data, fs = sf.read(file_path, dtype='float32')  
+        sd.play(data, fs)
+        status = sd.wait()  # Wait until file is done playing
+    except Exception as e:
+        print("An error happend: " + e)
 
 
 def main_tts(text):
@@ -49,4 +52,4 @@ def main_tts(text):
         ttsplayer(filename)
 
     except Exception as e:
-        print(f"Exception: {e}")
+        print("An error happend: " + e)
