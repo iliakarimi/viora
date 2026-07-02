@@ -53,7 +53,7 @@ python3.14 -m venv .venv
 source .venv/bin/activate
 pip install -r "requirements.txt"
 ```
-also you need `scrot` and `gnome-screenshot` on linux with:
+also you need `scrot` and `gnome-screenshot` on linux with(If not installed):
 ```bash
 # debian & ubuntu:
 sudo apt-get install scrot tk-dev python3-tk gnome-screenshot
@@ -126,8 +126,13 @@ If you are using the KDE Plasma desktop environment:
 
 Open the `.env` file and populate it with your API credentials:
 ```env
-OPENAI_API_KEY=your_openai_api_key_here
-DEEPGRAM_API=your_deepgram_api_key_here
+OPENAI_API_KEY=ENTER-YOUR-OPENAI-API-KEY
+DEEPGRAM_API=ENTER-YOUR-DEEPGRAM-API-KEY
+```
+
+Then run `configure.py` to enter your information:
+```bash
+python configure.py
 ```
 
 ---
@@ -137,12 +142,6 @@ DEEPGRAM_API=your_deepgram_api_key_here
 ### Quick Start
 
 To launch the agent in interactive CLI mode, run:
-
-```bash
-./run.sh
-```
-
-or
 
 ```bash
 python chat.py
