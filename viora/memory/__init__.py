@@ -1,1 +1,0 @@
-from memory.short_term_memory import ShortTermMemory
