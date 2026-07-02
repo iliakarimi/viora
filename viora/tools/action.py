@@ -1,4 +1,3 @@
-import Xlib
 import pyautogui as pg
 
 

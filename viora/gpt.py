@@ -23,12 +23,13 @@ with open("configs/models.json", "r") as mc:
 model_name = model_conf["GPT"]
 
 
-__screen_picture()
-image_f = "logs/snapshot.png"
-base64_image = encode_image(image_f)
 
-
-def openai_response(input:str | None, model_name = model_name, stream=False, memory=None):
+def openai_response(input="", model_name = model_name, stream=False):
+    
+    __screen_picture()
+    image_f = "logs/snapshot.png"
+    base64_image = encode_image(image_f)
+    
     try:
         response = client.responses.create(
             model=model_name,
@@ -46,10 +47,6 @@ def openai_response(input:str | None, model_name = model_name, stream=False, mem
                             "image_url": f"data:image/jpeg;base64,{base64_image}"
                         }
                     ]
-                },
-                {
-                    "role": "assistant",
-                    "content": memory
                 },
             ],
             stream=stream
