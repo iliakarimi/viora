@@ -181,4 +181,4 @@ Distributed under the Apache-2.0 License. See `LICENSE` for more information.
 
 ## Contact
 
-Ilia Karimi - iliakarimi.dev@gmail.com
+Ilia Karimi - theiliakarimi@gmail.com
