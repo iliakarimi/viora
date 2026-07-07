@@ -1,6 +1,6 @@
-# Viora
+# Project-A
 
-Viora is a Research Project that I'm Trying to make a agent to do the tasks without any automation or Intervention.
+Project-A is a Research Project that I'm Trying to make a agent to do the tasks without any automation or Intervention.
 
 > **Note:** This project is currently under active development and is not finalized. You should expect bugs, unstable behavior, and breaking changes. Use with caution in any critical environments.
 
@@ -15,9 +15,9 @@ Viora is a Research Project that I'm Trying to make a agent to do the tasks with
 
 ---
 
-## Key Features in Viora(Alpha 0.1)
+## Key Features in Project-A(Alpha 0.1)
 
-* **Full Autonomous Agent:** Trying to make Viora do task it self without any automation,
+* **Full Autonomous Agent:** Trying to make Project-A do task it self without any automation,
 * **Compter Control:** The agent can Use use the compter-machine using keyboard and mouse by It self,
 * **More automonous Features:** Future releases.
 
@@ -37,8 +37,8 @@ Before setting up the project, ensure you have the following installed:
 
 1. Clone the repository:
   ```bash
-  git clone [https://github.com/iliakarimi/viora.git](https://github.com/iliakarimi/viora.git)
-  cd viora && cd viora
+  git clone https://github.com/iliakarimi/project-a.git
+  cd project-a && cd project-a
   ```
 
 2. Install dependencies:
@@ -46,7 +46,7 @@ Before setting up the project, ensure you have the following installed:
   bash install.sh
   ```
 
-or if you want install Viora manually:
+or if you want install Project-A manually:
 
 ```bash
 python3.14 -m venv .venv
@@ -181,4 +181,4 @@ Distributed under the Apache-2.0 License. See `LICENSE` for more information.
 
 ## Contact
 
-Ilia Karimi - theiliakarimi@gmail.com
+Ilia Karimi - iliakarimi.dev@gmail.com
